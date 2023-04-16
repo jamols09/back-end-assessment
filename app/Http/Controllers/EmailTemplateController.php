@@ -6,7 +6,7 @@ use App\Models\EmailTemplates;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class EmailTemplate extends Controller
+class EmailTemplateController extends Controller
 {
     public function create()
     {
