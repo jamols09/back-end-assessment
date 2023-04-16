@@ -38,6 +38,7 @@ Route::middleware([
     //     return Inertia::render('Dashboard');
     // })->name('dashboard');
 
-    Route::get('/template', [EmailTemplate::class, 'index']);
-    Route::get('/template/list', [EmailTemplate::class, 'show']);
+    Route::get('/template', [EmailTemplate::class, 'index'])->name('template.index');
+    Route::post('/template', [EmailTemplate::class, 'store'])->name('template.store');
+    Route::get('/template/list', [EmailTemplate::class, 'show'])->name('template.show');
 });

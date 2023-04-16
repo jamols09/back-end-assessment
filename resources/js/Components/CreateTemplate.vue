@@ -7,9 +7,9 @@ const form = reactive({
     body: null,
 });
 
-function submit() {
-    router.post("/users", form);
-}
+const submit = () => {
+    router.post("/template", form);
+};
 </script>
 <template>
     <form @submit.prevent="submit">
