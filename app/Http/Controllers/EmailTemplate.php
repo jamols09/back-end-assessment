@@ -11,4 +11,9 @@ class EmailTemplate extends Controller
     {
         return Inertia::render('CreateEmailTemplate');
     }
+
+    public function show(Request $request)
+    {
+        return Inertia::render('ListEmailTemplate');
+    }
 }

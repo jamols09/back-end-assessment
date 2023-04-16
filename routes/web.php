@@ -39,4 +39,5 @@ Route::middleware([
     // })->name('dashboard');
 
     Route::get('/template', [EmailTemplate::class, 'index']);
+    Route::get('/template/list', [EmailTemplate::class, 'show']);
 });

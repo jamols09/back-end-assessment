@@ -1,5 +1,4 @@
 <script setup>
-import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import { Link } from "@inertiajs/vue3";
 </script>
 
@@ -16,11 +15,12 @@ import { Link } from "@inertiajs/vue3";
                 >
                     Create Template
                 </Link>
-                <button
+                <Link
+                    href="/template/list"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
                 >
                     View Templates
-                </button>
+                </Link>
             </div>
         </div>
     </div>
