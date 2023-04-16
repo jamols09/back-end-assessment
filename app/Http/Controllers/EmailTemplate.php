@@ -8,15 +8,15 @@ use Inertia\Inertia;
 
 class EmailTemplate extends Controller
 {
-    public function index(Request $request)
+    public function create()
     {
         return Inertia::render('CreateEmailTemplate');
     }
 
-    public function show(Request $request)
+    public function index()
     {
         return Inertia::render('ListEmailTemplate', [
-            'email_templates' => EmailTemplates::all()
+            'templates' => EmailTemplates::all()
         ]);
     }
 
@@ -28,7 +28,27 @@ class EmailTemplate extends Controller
                 'body' => ['required', 'max:254'],
             ])
         );
-
         return to_route('template.index');
+    }
+
+    public function destroy(EmailTemplates $template)
+    {
+        $template->delete();
+        return to_route('template.index');
+    }
+
+    public function show(EmailTemplates $template)
+    {
+        return Inertia::render('CreateEmailTemplate', [
+            'template' => $template
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        EmailTemplates::where('id', $request->template)->update([
+            'title' => $request->get('title'),
+            'body' => $request->get('body')
+        ]);
     }
 }

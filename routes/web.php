@@ -38,7 +38,10 @@ Route::middleware([
     //     return Inertia::render('Dashboard');
     // })->name('dashboard');
 
-    Route::get('/template', [EmailTemplate::class, 'index'])->name('template.index');
+    Route::get('/template', [EmailTemplate::class, 'create'])->name('template.create');
     Route::post('/template', [EmailTemplate::class, 'store'])->name('template.store');
-    Route::get('/template/list', [EmailTemplate::class, 'show'])->name('template.show');
+    Route::get('/template/list', [EmailTemplate::class, 'index'])->name('template.index');
+    Route::delete('/template/{template}', [EmailTemplate::class, 'destroy'])->name('template.destroy');
+    Route::get('/template/{template}', [EmailTemplate::class, 'show'])->name('template.show');;
+    Route::put('/template/{template}', [EmailTemplate::class, 'update'])->name('template.update');;
 });

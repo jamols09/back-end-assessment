@@ -2,17 +2,28 @@
 import { Link, router } from "@inertiajs/vue3";
 import { reactive } from "vue";
 
+const props = defineProps({
+    policy: String,
+    template: {
+        type: Object,
+    },
+});
+
 const form = reactive({
-    title: null,
-    body: null,
+    title: props.template?.title ?? null,
+    body: props.template?.body ?? null,
 });
 
 const submit = () => {
     router.post("/template", form);
 };
+
+const update = () => {
+    router.put(`/template/${props.template.id}`, form);
+};
 </script>
 <template>
-    <form @submit.prevent="submit">
+    <form @submit.prevent="template == null ? submit() : update()">
         <h2>Create Template</h2>
 
         <div class="my-2">
@@ -55,7 +66,7 @@ const submit = () => {
             <button
                 class="bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded mr-2"
             >
-                Create
+                {{ template == null ? "Create" : "Update" }}
             </button>
             <Link
                 class="bg-gray-600 hover:bg-gray-700 text-white py-2 px-2 rounded mr-2"

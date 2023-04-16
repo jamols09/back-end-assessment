@@ -1,12 +1,12 @@
 <script setup>
-import { Head } from "@inertiajs/vue3";
+import { Head, Link } from "@inertiajs/vue3";
 import AuthenticationCardLogo from "@/Components/AuthenticationCardLogo.vue";
-import CreateTemplate from "@/Components/CreateTemplate.vue";
+import ListTemplates from "@/Components/ListTemplates.vue";
 
 defineProps({
     policy: String,
-    template: {
-        type: Object,
+    templates: {
+        type: Array,
     },
 });
 </script>
@@ -24,7 +24,7 @@ defineProps({
                 <div
                     class="w-full sm:max-w-2xl mt-6 p-6 bg-white shadow-md overflow-hidden sm:rounded-lg prose"
                 >
-                    <CreateTemplate :template="template" />
+                    <ListTemplates :templates="templates" />
                 </div>
             </div>
         </div>
