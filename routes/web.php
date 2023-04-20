@@ -46,5 +46,6 @@ Route::middleware([
     Route::get('/template/{template}', [EmailTemplateController::class, 'show'])->name('template.show');
     Route::put('/template/{template}', [EmailTemplateController::class, 'update'])->name('template.update');
 
-    Route::get('/mail/{mail}', [SendMailController::class, 'show'])->name('mail.show');
+    Route::get('/mail/{template}', [SendMailController::class, 'show'])->name('mail.show');
+    Route::post('/mail/{template}', [SendMailController::class, 'store'])->name('mail.store');
 });

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\EmailTemplates;
-use App\Models\SentEmails;
 use App\Models\User;
+use App\Services\SendMailService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -15,13 +15,25 @@ class SendMailController extends Controller
         // return Inertia::render('SendMail');
     }
 
-    public function store()
+    public function show(EmailTemplates $template)
     {
+        $users = User::all();
+
+        return Inertia::render('SendMail', [
+            'template' => $template,
+            'users' => $users
+        ]);
     }
 
-    public function show(SentEmails $mail)
+    public function store(EmailTemplates $template, Request $request)
     {
+        $users = User::all();
 
-        return Inertia::render('SendMail');
+        $body = (new SendMailService)->assignKeys($template, $request);
+
+        return Inertia::render('SendMail', [
+            'template' => $template,
+            'users' => $users
+        ]);
     }
 }

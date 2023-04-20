@@ -25,7 +25,7 @@ const update = () => {
 <template>
     <form @submit.prevent="template == null ? submit() : update()">
         <h2>Create Template</h2>
-        <p class="text-sm">"[[name]]" "[[email]]" - two wildcards only</p>
+        <p class="text-sm">"[name]" "[email]" - two wildcards only</p>
         <div class="my-2">
             <label
                 for="price"

@@ -8,6 +8,9 @@ defineProps({
     users: {
         type: Array,
     },
+    template: {
+        type: Object
+    }
 });
 </script>
 

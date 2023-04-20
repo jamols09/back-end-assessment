@@ -15,30 +15,38 @@ const props = defineProps({
 const form = reactive({
     title: props.template?.title ?? null,
     body: props.template?.body ?? null,
-    to: null,
+    to: "",
 });
 
-const submit = () => {
-    // router.post("/template", form);
+const onSubmit = () => {
+    router.post(`${props.template.id}`, form);
 };
 </script>
 <template>
-    <form @submit.prevent="">
+    <form @submit.prevent="onSubmit">
         <h2>Create Template</h2>
-        <p class="text-sm">"[[name]]" "[[email]]" - two wildcards only</p>
+        <p class="text-sm">"[name]" "[email]" - two wildcards only</p>
         <div class="my-2">
             <label
                 for="users"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >Select an user</label
             >
-            {{ users }}
+            <!-- <input
+                v-model="form.to"
+                type="email"
+                name="email"
+                id="email"
+                class="block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            /> -->
             <select
                 id="users"
                 v-model="form.to"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
-                <option v-for="user in users">{{ user.name }}</option>
+                <option v-for="user in users" :value="user.id">
+                    {{ user.name }}
+                </option>
             </select>
         </div>
         <div class="my-2">
@@ -80,6 +88,7 @@ const submit = () => {
         <div class="mt-7">
             <button
                 class="bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded mr-2"
+                type="submit"
             >
                 Send Mail
             </button>
