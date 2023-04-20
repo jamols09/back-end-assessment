@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\EmailTemplate;
+use App\Http\Controllers\EmailTemplateController;
+use App\Http\Controllers\SendMailController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -38,10 +39,12 @@ Route::middleware([
     //     return Inertia::render('Dashboard');
     // })->name('dashboard');
 
-    Route::get('/template', [EmailTemplate::class, 'create'])->name('template.create');
-    Route::post('/template', [EmailTemplate::class, 'store'])->name('template.store');
-    Route::get('/template/list', [EmailTemplate::class, 'index'])->name('template.index');
-    Route::delete('/template/{template}', [EmailTemplate::class, 'destroy'])->name('template.destroy');
-    Route::get('/template/{template}', [EmailTemplate::class, 'show'])->name('template.show');;
-    Route::put('/template/{template}', [EmailTemplate::class, 'update'])->name('template.update');;
+    Route::get('/template', [EmailTemplateController::class, 'create'])->name('template.create');
+    Route::post('/template', [EmailTemplateController::class, 'store'])->name('template.store');
+    Route::get('/template/list', [EmailTemplateController::class, 'index'])->name('template.index');
+    Route::delete('/template/{template}', [EmailTemplateController::class, 'destroy'])->name('template.destroy');
+    Route::get('/template/{template}', [EmailTemplateController::class, 'show'])->name('template.show');
+    Route::put('/template/{template}', [EmailTemplateController::class, 'update'])->name('template.update');
+
+    Route::get('/mail/{mail}', [SendMailController::class, 'show'])->name('mail.show');
 });

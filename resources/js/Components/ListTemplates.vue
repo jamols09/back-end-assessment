@@ -17,6 +17,10 @@ const destory = (id) => {
 const update = (id) => {
     router.get(`/template/${id}`);
 };
+
+const redirect = (id) => {
+    router.get(`/mail/${id}`);
+};
 </script>
 
 <template>
@@ -50,11 +54,12 @@ const update = (id) => {
                             }}
                         </p>
                         <div class="mx-1 my-1">
-                            <button
-                                class="bg-blue-600 hover:bg-blue-700 text-white py-1 px-2 rounded mr-2"
+                            <Link
+                                class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-2 rounded mr-2"
+                                @click="redirect(template?.id)"
                             >
                                 Use
-                            </button>
+                            </Link>
                             <button
                                 class="bg-blue-600 hover:bg-blue-700 text-white py-1 px-2 rounded mr-2"
                                 @click="update(template?.id)"
