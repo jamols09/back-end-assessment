@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
-    <title>Red flag account</title>
+    <title>{{ $title }}</title>
 </head>
 
 <body style="font-family: Lato; color:gray">

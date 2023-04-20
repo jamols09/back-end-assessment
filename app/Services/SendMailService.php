@@ -29,8 +29,8 @@ class SendMailService
         return $body;
     }
 
-    public function sendMail(string $body, string $email)
+    public function sendMail(string $body, string $email, string $title)
     {
-        Mail::to($email)->send(new TemplatedMail($body));
+        Mail::to($email)->send(new TemplatedMail($body, $title));
     }
 }

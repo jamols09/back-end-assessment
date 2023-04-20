@@ -49,7 +49,8 @@ class TemplatedMail extends Mailable
         return new Content(
             view: 'emails.mail-message',
             with: [
-                'body' => $this->message
+                'body' => $this->message,
+                'title' => $this->title
             ],
         );
     }

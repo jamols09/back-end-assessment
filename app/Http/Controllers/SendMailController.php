@@ -31,7 +31,9 @@ class SendMailController extends Controller
 
         $body = (new SendMailService)->assignKeys($template, $request);
 
-        (new SendMailService)->sendMail($body, User::find($request->input('to'))->email);
+        $user = User::find($request->input('to'));
+
+        (new SendMailService)->sendMail($body, $user->email, $template->title);
 
         return Inertia::render('SendMail', [
             'template' => $template,
