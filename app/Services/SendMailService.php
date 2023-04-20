@@ -23,13 +23,14 @@ class SendMailService
         $body = $template->body;
 
         foreach ($this->replacements as $key => $value) {
-            $body = preg_replace('/\['.$key.'\]/', $value, $body);
+            $body = preg_replace('/\[' . $key . '\]/', $value, $body);
         }
 
         return $body;
     }
 
-    public function sendMail(string $body, string $email){
+    public function sendMail(string $body, string $email)
+    {
         Mail::to($email)->send(new TemplatedMail($body));
     }
 }

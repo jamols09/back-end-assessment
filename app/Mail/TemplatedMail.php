@@ -19,9 +19,12 @@ class TemplatedMail extends Mailable
      * @return void
      */
     public string $message;
-    public function __construct(string $message)
+    public string $title;
+
+    public function __construct(string $message, string $title = 'Templated Mail')
     {
         $this->message = $message;
+        $this->title = $title;
     }
 
     /**
@@ -32,7 +35,7 @@ class TemplatedMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Templated Mail',
+            subject: $this->title,
         );
     }
 
@@ -44,7 +47,10 @@ class TemplatedMail extends Mailable
     public function content()
     {
         return new Content(
-            view: 'views.emails.mail-message',
+            view: 'emails.mail-message',
+            with: [
+                'body' => $this->message
+            ],
         );
     }
 
