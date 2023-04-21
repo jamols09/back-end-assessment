@@ -36,6 +36,8 @@ class SendMailController extends Controller
 
         (new SendMailService)->sendMail($message['body'], $email, $message['title']);
 
+        (new SendMailService)->recordMail($message, $template->id, User::find($request->input('to'))->id);
+
         return Inertia::render('SendMail', [
             'template' => $template,
             'users' => User::all()
