@@ -6,6 +6,7 @@ use App\Mail\TemplatedMail;
 use App\Models\EmailTemplates;
 use App\Models\SentEmails;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -46,7 +47,8 @@ class SendMailService
             'user_id' => $user_id,
             'body' => $message['body'],
             'title' => $message['title'],
-            'email_template_id' => $template_id
+            'email_template_id' => $template_id,
+            'send_datetime' => Carbon::now()
         ]);
     }
 }
