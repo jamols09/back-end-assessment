@@ -25,9 +25,19 @@ const redirect = (id) => {
 
 <template>
     <div>
-        <h2>Templates</h2>
+        <h2>Select templates to use</h2>
         <!-- <p class="text-gray-400">{# email #} - email & name only</p> -->
         <div class="my-2">
+            <div class="my-2">
+                <div class="mt-7">
+                    <Link
+                        class="bg-gray-600 hover:bg-gray-700 text-white py-2 px-2 rounded mr-2"
+                        href="/dashboard"
+                    >
+                        Back
+                    </Link>
+                </div>
+            </div>
             <main class="flex flex-row h-screen">
                 <div
                     class="w-1/5 h-full flex max-h-screen overflow-y-auto flex-col flex-grow"
@@ -76,16 +86,6 @@ const redirect = (id) => {
                     </div>
                 </div>
             </main>
-        </div>
-        <div class="my-2">
-            <div class="mt-7">
-                <Link
-                    class="bg-gray-600 hover:bg-gray-700 text-white py-2 px-2 rounded mr-2"
-                    href="/dashboard"
-                >
-                    Back
-                </Link>
-            </div>
         </div>
     </div>
 </template>

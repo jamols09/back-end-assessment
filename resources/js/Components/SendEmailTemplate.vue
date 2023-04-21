@@ -30,7 +30,7 @@ const onSubmit = () => {
             <label
                 for="users"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Select an user</label
+                >Select a user to send</label
             >
             <!-- <input
                 v-model="form.to"
