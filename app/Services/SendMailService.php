@@ -15,18 +15,23 @@ class SendMailService
 
     private $replacements = array();
 
-    public function assignKeys(EmailTemplates $template, Request $request)
+    public function assignKeys(string $to, string $email, string $_body, string $_title)
     {
-        $this->replacements['name'] = $request->input('to') ? User::find($request->input('to'))->name : '';
-        $this->replacements['email'] = $request->input('to') ? User::find($request->input('to'))->email : '';
+        $this->replacements['name'] = $to;
+        $this->replacements['email'] = $email;
 
-        $body = $template->body;
+        $body = $_body;
+        $title = $_title;
 
         foreach ($this->replacements as $key => $value) {
             $body = preg_replace('/\[' . $key . '\]/', $value, $body);
         }
 
-        return $body;
+        foreach ($this->replacements as $key => $value) {
+            $title = preg_replace('/\[' . $key . '\]/', $value, $title);
+        }
+
+        return ["body" => $body, "title" => $title];
     }
 
     public function sendMail(string $body, string $email, string $title)

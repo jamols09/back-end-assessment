@@ -27,17 +27,18 @@ class SendMailController extends Controller
 
     public function store(EmailTemplates $template, Request $request)
     {
-        $users = User::all();
+        $to = $request->input('to') ? User::find($request->input('to'))->name : '';
+        $email = $request->input('to') ? User::find($request->input('to'))->email : '';
+        $body = $request->input('body');
+        $title = $request->input('title');
 
-        $body = (new SendMailService)->assignKeys($template, $request);
+        $message = (new SendMailService)->assignKeys($to, $email, $body, $title);
 
-        $user = User::find($request->input('to'));
-
-        (new SendMailService)->sendMail($body, $user->email, $template->title);
+        (new SendMailService)->sendMail($message['body'], $email, $message['title']);
 
         return Inertia::render('SendMail', [
             'template' => $template,
-            'users' => $users
+            'users' => User::all()
         ]);
     }
 }
