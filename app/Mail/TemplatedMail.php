@@ -65,7 +65,7 @@ class TemplatedMail extends Mailable
     public function attachments()
     {
         return array_filter([
-            $this->filename ? Attachment::fromStorage('attachment/Zlgdw7lujVhRPxTX9Nxuv8KZDeY3p1UXbPOvsrH6.png')->as($this->filename) : null
+            $this->filename ? Attachment::fromStorage('attachment/' . $this->filename)->as($this->filename) : null
         ]);
     }
 }
