@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\EmailTemplates;
 use App\Models\User;
+use App\Services\EmailAttachmentService;
 use App\Services\SendMailService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
 class SendMailController extends Controller
@@ -37,6 +39,12 @@ class SendMailController extends Controller
         (new SendMailService)->sendMail($message['body'], $email, $message['title']);
 
         (new SendMailService)->recordMail($message, $template->id, User::find($request->input('to'))->id);
+
+        if ($request->file('file')) {
+            $path = 'attachment/';
+            (new EmailAttachmentService)->storeFile($request->file->hashName(), $request, $path);
+            (new EmailAttachmentService)->saveRecord($request->file('file')->getClientOriginalName(), $request->file->hashName(), $path);
+        }
 
         return Inertia::render('SendMail', [
             'template' => $template,

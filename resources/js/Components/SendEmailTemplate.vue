@@ -19,11 +19,13 @@ const form = reactive({
 });
 
 const onSubmit = () => {
-    router.post(`${props.template.id}`, form);
+    router.post(`${props.template.id}`, form, {
+        forceFormData: true,
+    });
 };
 </script>
 <template>
-    <form @submit.prevent="onSubmit">
+    <form @submit.prevent="onSubmit" enctype="multipart/form-data">
         <h2>Create Template</h2>
         <p class="text-sm">"[name]" "[email]" - two wildcards only</p>
         <div class="my-2">
@@ -81,6 +83,22 @@ const onSubmit = () => {
                     id="body"
                     rows="10"
                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+            </div>
+        </div>
+        <div class="my-2">
+            <label
+                for="price"
+                class="block text-sm font-medium leading-6 text-gray-900"
+            >
+                Attachment
+            </label>
+            <div class="relative mt-2 rounded-md shadow-sm">
+                <input
+                    type="file"
+                    name="attachment"
+                    id="attachment"
+                    @input="form.file = $event.target.files[0]"
                 />
             </div>
         </div>

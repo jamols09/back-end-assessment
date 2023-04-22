@@ -3,14 +3,9 @@
 namespace App\Services;
 
 use App\Mail\TemplatedMail;
-use App\Models\EmailTemplates;
 use App\Models\SentEmails;
-use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use Inertia\Inertia;
 
 class SendMailService
 {
