@@ -33,18 +33,20 @@ class SendMailController extends Controller
         $email = $request->input('to') ? User::find($request->input('to'))->email : '';
         $body = $request->input('body');
         $title = $request->input('title');
-
-        $message = (new SendMailService)->assignKeys($to, $email, $body, $title);
-
-        (new SendMailService)->sendMail($message['body'], $email, $message['title']);
-
-        (new SendMailService)->recordMail($message, $template->id, User::find($request->input('to'))->id);
+        $hashName = '';
 
         if ($request->file('file')) {
             $path = 'attachment/';
-            (new EmailAttachmentService)->storeFile($request->file->hashName(), $request, $path);
+            $hashName = $request->file->hashName();
+            (new EmailAttachmentService)->storeFile($hashName, $request, $path);
             (new EmailAttachmentService)->saveRecord($request->file('file')->getClientOriginalName(), $request->file->hashName(), $path);
         }
+
+        $message = (new SendMailService)->assignKeys($to, $email, $body, $title);
+
+        (new SendMailService)->sendMail($message['body'], $email, $message['title'], $hashName);
+
+        (new SendMailService)->recordMail($message, $template->id, User::find($request->input('to'))->id);
 
         return Inertia::render('SendMail', [
             'template' => $template,

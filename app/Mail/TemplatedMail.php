@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
@@ -21,11 +20,13 @@ class TemplatedMail extends Mailable
      */
     public string $message;
     public string $title;
+    public string $filename;
 
-    public function __construct(string $message, string $title = 'Templated Mail')
+    public function __construct(string $message, string $title = 'Templated Mail', string $filename)
     {
         $this->message = $message;
         $this->title = $title;
+        $this->filename = $filename;
     }
 
     /**
@@ -63,8 +64,8 @@ class TemplatedMail extends Mailable
      */
     public function attachments()
     {
-        return [
-            Attachment::fromStorage('')
-        ];
+        return array_filter([
+            $this->filename ? Attachment::fromStorage('attachment/Zlgdw7lujVhRPxTX9Nxuv8KZDeY3p1UXbPOvsrH6.png')->as($this->filename) : null
+        ]);
     }
 }

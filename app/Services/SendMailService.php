@@ -31,9 +31,9 @@ class SendMailService
         return ["body" => $body, "title" => $title];
     }
 
-    public function sendMail(string $body, string $email, string $title): void
+    public function sendMail(string $body, string $email, string $title, string $filename): void
     {
-        Mail::to($email)->send(new TemplatedMail($body, $title));
+        Mail::to($email)->send(new TemplatedMail($body, $title, $filename));
     }
 
     public function recordMail(array $message, int $template_id, int $user_id): void
