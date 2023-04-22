@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EmailTemplateController;
 use App\Http\Controllers\SendMailController;
+use App\Http\Controllers\SentMailController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -48,4 +49,7 @@ Route::middleware([
 
     Route::get('/mail/{template}', [SendMailController::class, 'show'])->name('mail.show');
     Route::post('/mail/{template}', [SendMailController::class, 'store'])->name('mail.store');
+
+    Route::get('/sent/list', [SentMailController::class, 'index'])->name('sent.index');
+    Route::get('/sent/{sent}', [SentMailController::class, 'show'])->name('sent.show');
 });

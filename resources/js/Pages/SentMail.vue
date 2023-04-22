@@ -2,15 +2,13 @@
 import { Head } from "@inertiajs/vue3";
 import AuthenticationCardLogo from "@/Components/AuthenticationCardLogo.vue";
 import SendEmailTemplate from "@/Components/SendEmailTemplate.vue";
+import ListSentMail from "../Components/ListSentMail.vue";
 
 defineProps({
     policy: String,
-    users: {
+    mails: {
         type: Array,
     },
-    // template: {
-    //     type: Object
-    // }
 });
 </script>
 
@@ -27,7 +25,7 @@ defineProps({
                 <div
                     class="w-full sm:max-w-2xl mt-6 p-6 bg-white shadow-md overflow-hidden sm:rounded-lg prose"
                 >
-                    <!-- <SendEmailTemplate :template="template" :users="users" /> -->
+                    <ListSentMail :mails="mails" />
                 </div>
             </div>
         </div>

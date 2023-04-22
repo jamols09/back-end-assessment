@@ -19,11 +19,10 @@ class SendMailController extends Controller
 
     public function show(EmailTemplates $template)
     {
-        $users = User::all();
 
         return Inertia::render('SendMail', [
             'template' => $template,
-            'users' => $users
+            'users' => User::all()
         ]);
     }
 
