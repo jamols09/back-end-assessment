@@ -26,6 +26,7 @@ const form = reactive({
             </label>
             <div class="relative mt-2 rounded-md shadow-sm">
                 <input
+                    disabled
                     v-model="form.title"
                     type="text"
                     name="title"
@@ -43,6 +44,7 @@ const form = reactive({
             </label>
             <div class="relative mt-2 rounded-md shadow-sm">
                 <textarea
+                    disabled
                     v-model="form.body"
                     type="text"
                     name="body"
