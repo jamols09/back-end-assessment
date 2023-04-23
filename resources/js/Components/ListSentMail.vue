@@ -7,19 +7,8 @@ defineProps({
     },
 });
 
-// const destory = (id) => {
-//     router.delete(`/template/${id}`, {
-//         onBefore: () =>
-//             confirm("Are you sure you want to delete this template?"),
-//     });
-// };
-
-// const update = (id) => {
-//     router.get(`/template/${id}`);
-// };
-
 const redirect = (id) => {
-    router.get(`/mail/${id}`);
+    router.get(`/sent/${id}`);
 };
 </script>
 
@@ -68,7 +57,7 @@ const redirect = (id) => {
                                 class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-2 rounded mr-2"
                                 @click="redirect(mail?.id)"
                             >
-                                View
+                                View {{ mail.id }}
                             </Link>
                         </div>
                     </div>

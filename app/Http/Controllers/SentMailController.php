@@ -17,7 +17,7 @@ class SentMailController extends Controller
 
     public function show(SentEmails $sent)
     {
-        return Inertia::render('CreateTemplate', [
+        return Inertia::render('ViewSentMail', [
             'template' => $sent,
         ]);
     }
