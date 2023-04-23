@@ -5,11 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SentEmails extends Model
+class EmailAttachment extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'body', 'title', 'send_datetime', 'email_template_id'
+        'sent_emails_id',
+        'original_name',
+        'file_name',
+        'path',
     ];
 }
